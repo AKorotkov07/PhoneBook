@@ -2,30 +2,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PhoneBook {
-    private Map<String, String> contacts = new HashMap<>();
+    private Map<String, String> phoneNumbersToNames;
 
-    public int add(String name, String number) {
-        if (!contacts.containsKey(name)) {
-            contacts.put(name, number);
-            return contacts.size();
-        }
-        return contacts.size();
+    public PhoneBook() {
+        this.phoneNumbersToNames = new HashMap<>();
     }
 
-    public String findByNumber(String number) {
-        for (Map.Entry<String, String> entry : contacts.entrySet()) {
-            if (entry.getValue().equals(number)) {
-                return entry.getKey();
-            }
-        }
-        return null;
+    public void addName(String name, String phoneNumber) {
+        phoneNumbersToNames.put(phoneNumber, name);
     }
 
-    public String findByName(String name) {
-        return contacts.get(name);
+    public String findByName(String phoneNumber) {
+        return phoneNumbersToNames.get(phoneNumber);
     }
 
-    public void printAllNames() {
-        contacts.keySet().stream().sorted().forEach(System.out::println);
+    public int size() {
+        return phoneNumbersToNames.size();
     }
 }
